@@ -38,7 +38,7 @@ public class SamplePlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nextState = "Idler" +
+        nextState = "Idle" +
             "";
     }
 
@@ -95,7 +95,7 @@ public class SamplePlayer : MonoBehaviour
     private void CheckRotation()
     {
         Vector3 playerRotation = transform.rotation.eulerAngles;
-        playerRotation.y = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        playerRotation.y += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
 
         transform.rotation = Quaternion.Euler(playerRotation);
 
