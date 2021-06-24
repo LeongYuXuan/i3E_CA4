@@ -92,6 +92,7 @@ public class SamplePlayer : MonoBehaviour
         
     }
 
+    //This affected camera movement
     private void CheckRotation()
     {
         Vector3 playerRotation = transform.rotation.eulerAngles;
