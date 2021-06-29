@@ -60,7 +60,6 @@ public class SamplePlayer : MonoBehaviour
     private void SwitchState()
     {
         StopCoroutine(currentState);
-
         currentState = nextState;
         StartCoroutine(currentState);
     }
@@ -74,6 +73,7 @@ public class SamplePlayer : MonoBehaviour
             if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") != 0)
             {
                 nextState = "Moving";
+                Debug.Log("Move");
             }
             yield return null;
         }
@@ -86,6 +86,8 @@ public class SamplePlayer : MonoBehaviour
             if (!CheckMovement())
             {
                 nextState = "Idle";
+                Debug.Log("Stop");
+                
             }
             yield return null;
         }
@@ -112,8 +114,7 @@ public class SamplePlayer : MonoBehaviour
     /// <returns>True if user input is detected and player is moved.</returns>
     private bool CheckMovement()
     {
-        return false;
-        Vector3 newPos = transform.position;
+        //Vector3 newPos = transform.position;
 
         Vector3 xMovement = transform.right * Input.GetAxis("Horizontal");
         Vector3 zMovement = transform.forward * Input.GetAxis("Vertical");
@@ -123,15 +124,15 @@ public class SamplePlayer : MonoBehaviour
         //HAs something to do with movement
         if(movementVector.sqrMagnitude > 0)
         {
-            movementVector *= moveSpeed * Time.deltaTime;
-            newPos += movementVector;
+            movementVector *= (moveSpeed * Time.deltaTime);
+            //newPos = movementVector;
 
-            transform.position += newPos;
-            return false;
+            transform.position += movementVector;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
 
     }
