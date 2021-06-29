@@ -101,7 +101,7 @@ public class SamplePlayer : MonoBehaviour
         transform.rotation = Quaternion.Euler(playerRotation);
 
         Vector3 cameraRotation = playerCamera.transform.rotation.eulerAngles;
-        cameraRotation.x += Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+        cameraRotation.x -= Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 
         playerCamera.transform.rotation = Quaternion.Euler(cameraRotation);
     }
@@ -120,12 +120,13 @@ public class SamplePlayer : MonoBehaviour
 
         Vector3 movementVector = xMovement + zMovement;
 
+        //HAs something to do with movement
         if(movementVector.sqrMagnitude > 0)
         {
             movementVector *= moveSpeed * Time.deltaTime;
             newPos += movementVector;
 
-            transform.position = newPos;
+            transform.position += newPos;
             return false;
         }
         else
