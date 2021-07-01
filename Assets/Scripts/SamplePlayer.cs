@@ -73,7 +73,7 @@ public class SamplePlayer : MonoBehaviour
             if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") != 0)
             {
                 nextState = "Moving";
-                Debug.Log("Move");
+                //Debug.Log("Move");
             }
             yield return null;
         }
@@ -86,7 +86,7 @@ public class SamplePlayer : MonoBehaviour
             if (!CheckMovement())
             {
                 nextState = "Idle";
-                Debug.Log("Stop");
+                //Debug.Log("Stop");
                 
             }
             yield return null;
@@ -102,6 +102,7 @@ public class SamplePlayer : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(playerRotation);
 
+        //changing from += to -= makes the camera move as intended
         Vector3 cameraRotation = playerCamera.transform.rotation.eulerAngles;
         cameraRotation.x -= Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 
@@ -114,10 +115,15 @@ public class SamplePlayer : MonoBehaviour
     /// <returns>True if user input is detected and player is moved.</returns>
     private bool CheckMovement()
     {
+        //this was deemed unecessary. Commenting out affected nothing (I hope)
         //Vector3 newPos = transform.position;
 
+        //move left and right (Problematic)
         Vector3 xMovement = transform.right * Input.GetAxis("Horizontal");
+        Debug.Log(xMovement);
+        //move forward and bacl
         Vector3 zMovement = transform.forward * Input.GetAxis("Vertical");
+        Debug.Log(zMovement);
 
         Vector3 movementVector = xMovement + zMovement;
 
