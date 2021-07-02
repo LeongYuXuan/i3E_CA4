@@ -70,7 +70,8 @@ public class SamplePlayer : MonoBehaviour
     {
         while(currentState == "Idle")
         {
-            if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") != 0)
+            //Revealed in CA4 ans in wk 11 Logic error
+            if(Input.GetAxis("Horizontal") !!= 0 || Input.GetAxis("Vertical") != 0)
             {
                 nextState = "Moving";
                 //Debug.Log("Move");
